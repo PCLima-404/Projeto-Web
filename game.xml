@@ -1,5 +1,3 @@
-[file name]: game.xml
-[file content begin]
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
   <title>Labirinto — Nível Aleatório</title>
@@ -23,8 +21,7 @@
 
   <enemy>
     <damage>1</damage>
-    <minSpeed>1.2</minSpeed>
-    <maxSpeed>2.0</maxSpeed>
+    <minSpeed>0.9</minSpeed>
+    <maxSpeed>1.3</maxSpeed>
   </enemy>
 </game>
-[file content end]

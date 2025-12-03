@@ -1,9 +1,8 @@
-[file name]: index.html [file content begin]
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <title>Labirinto 2D - Geração Procedural com Sistema de Tiro</title>
+    <title>Labirinto 2D</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -16,7 +15,6 @@
   </head>
 
   <body class="bg-dark text-light">
-    <!-- MENU PRINCIPAL -->
     <div id="mainMenu" class="menu-container">
       <h1 class="menu-title">LABIRINTO 2D</h1>
 
@@ -31,11 +29,10 @@
       </button>
 
       <div id="menuInfo" class="menu-info mt-4">
-        <p class="mb-0">Novidade: Agora com sistema de tiro!</p>
+        <p class="mb-0">Clique em jogar para começar</p>
       </div>
     </div>
 
-    <!-- JOGO -->
     <div id="gameContainer" style="display: none">
       <div class="container py-3">
         <h3 id="levelTitle">Labirinto — Nível Aleatório</h3>
@@ -57,9 +54,6 @@
         </div>
 
         <div class="mt-3 text-center">
-          <span class="badge bg-danger me-3"
-            >Vida: <strong id="lifeText">5</strong></span
-          >
           <span class="badge bg-warning me-3"
             >Moedas: <strong id="coinsText">0</strong></span
           >
@@ -86,7 +80,7 @@
             <strong>Controles:</strong>
             <span class="d-block d-md-inline">WASD/Setas para mover | </span>
             <span class="d-block d-md-inline"
-              ><strong>Clique</strong> ou <strong>ESPAÇO</strong> para atirar |
+              ><strong>Clique</strong> para atirar |
             </span>
             <span class="d-block d-md-inline"
               >Mate inimigos (+2 moedas cada)</span
@@ -124,29 +118,18 @@
     </footer>
 
     <script>
-      // Script adicional para garantir que os botões funcionem
+      // Script para exibir instruções e créditos (fallback)
       $(document).ready(function () {
-        console.log("Documento pronto, botões devem estar funcionando...");
-
-        // Verificar se os botões existem
-        console.log("Botão Jogar encontrado:", $("#btnPlay").length > 0);
-        console.log(
-          "Botão Instruções encontrado:",
-          $("#btnInstructions").length > 0
-        );
-        console.log("Botão Créditos encontrado:", $("#btnCredits").length > 0);
-
-        // Adicionar listeners de fallback caso o engine.js não tenha carregado
         $("#btnInstructions").on("click", function () {
           if (!$("#menuInfo").html().includes("Instruções:")) {
             $("#menuInfo").html(`
               <b>Instruções:</b><br>
-              1. Use WASD ou Setas para mover o personagem azul<br>
-              2. Clique com o mouse ou pressione ESPAÇO para atirar<br>
-              3. Colete moedas amarelas (+1 ponto)<br>
+              1. Use WASD ou Setas para mover o personagem<br>
+              2. Clique com o mouse para atirar<br>
+              3. Colete moedas amarelas<br>
               4. Elimine inimigos vermelhos (+2 moedas)<br>
               5. Encontre a saída verde (X) para vencer<br>
-              6. Evite colidir com inimigos (perde vida)<br>
+              6. Evite colidir com inimigos (perde vida) ou tente matá-los<br>
               <i>O labirinto é gerado aleatoriamente a cada partida!</i>
             `);
           }
@@ -157,11 +140,8 @@
             $("#menuInfo").html(`
               <b>Créditos:</b><br>
               • Desenvolvido para a disciplina Programação Web I<br>
-              • Sistema de labirinto procedural com algoritmo DFS<br>
-              • Mecânica de tiro adicionada<br>
-              • Interface com Bootstrap 5<br>
-              • Controles responsivos (teclado e mouse)<br>
-              • Sistema de log de eventos em tempo real
+              • Desenvolvido por Eduardo Berlink, Pedro Cesar<br>
+              Mary Nicole, João Lucas, Henrique Rezende
             `);
           }
         });
