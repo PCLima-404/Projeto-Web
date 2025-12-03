@@ -1,0 +1,171 @@
+[file name]: index.html [file content begin]
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Labirinto 2D - Geração Procedural com Sistema de Tiro</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="engine.js"></script>
+  </head>
+
+  <body class="bg-dark text-light">
+    <!-- MENU PRINCIPAL -->
+    <div id="mainMenu" class="menu-container">
+      <h1 class="menu-title">LABIRINTO 2D</h1>
+
+      <button id="btnPlay" class="menu-button btn btn-primary btn-lg">
+        Jogar
+      </button>
+      <button id="btnInstructions" class="menu-button btn btn-secondary btn-lg">
+        Instruções
+      </button>
+      <button id="btnCredits" class="menu-button btn btn-secondary btn-lg">
+        Créditos
+      </button>
+
+      <div id="menuInfo" class="menu-info mt-4">
+        <p class="mb-0">Novidade: Agora com sistema de tiro!</p>
+      </div>
+    </div>
+
+    <!-- JOGO -->
+    <div id="gameContainer" style="display: none">
+      <div class="container py-3">
+        <h3 id="levelTitle">Labirinto — Nível Aleatório</h3>
+        <p id="levelDesc" class="text-muted">
+          <i
+            >Cada labirinto é único! Colete moedas, elimine inimigos com tiros e
+            encontre a saída.</i
+          >
+        </p>
+
+        <div class="d-flex justify-content-center">
+          <canvas
+            id="gameCanvas"
+            width="640"
+            height="480"
+            tabindex="0"
+            style="outline: none"
+          ></canvas>
+        </div>
+
+        <div class="mt-3 text-center">
+          <span class="badge bg-danger me-3"
+            >Vida: <strong id="lifeText">5</strong></span
+          >
+          <span class="badge bg-warning me-3"
+            >Moedas: <strong id="coinsText">0</strong></span
+          >
+          <span class="badge bg-info"
+            >Tempo: <strong id="timeText">0</strong>s</span
+          >
+        </div>
+
+        <div class="mt-3 text-center">
+          <button id="btnPause" class="btn btn-warning btn-sm me-2">
+            ⏸️ Pausar
+          </button>
+          <button id="btnNewMap" class="btn btn-danger btn-sm me-2">
+            🔄 Novo Labirinto
+          </button>
+          <button id="btnRestart" class="btn btn-secondary btn-sm me-2">
+            🔄 Reiniciar
+          </button>
+          <button id="btnBackMenu" class="btn btn-light btn-sm">🏠 Menu</button>
+        </div>
+
+        <div class="mt-2 text-center">
+          <small class="text-info">
+            <strong>Controles:</strong>
+            <span class="d-block d-md-inline">WASD/Setas para mover | </span>
+            <span class="d-block d-md-inline"
+              ><strong>Clique</strong> ou <strong>ESPAÇO</strong> para atirar |
+            </span>
+            <span class="d-block d-md-inline"
+              >Mate inimigos (+2 moedas cada)</span
+            >
+          </small>
+        </div>
+
+        <div class="card bg-secondary mt-3">
+          <div
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <strong>📝 Log de Eventos</strong>
+            <button id="clearLog" class="btn btn-sm btn-outline-light">
+              🗑️ Limpar
+            </button>
+          </div>
+          <div
+            id="logArea"
+            class="card-body"
+            style="
+              height: 150px;
+              overflow-y: auto;
+              font-family: monospace;
+              font-size: 12px;
+            "
+          >
+            <div class="text-muted">Aguardando início do jogo...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-center mt-4 text-muted">
+      <small>Labirinto 2D - Criado para a disciplina Programação Web I</small>
+    </footer>
+
+    <script>
+      // Script adicional para garantir que os botões funcionem
+      $(document).ready(function () {
+        console.log("Documento pronto, botões devem estar funcionando...");
+
+        // Verificar se os botões existem
+        console.log("Botão Jogar encontrado:", $("#btnPlay").length > 0);
+        console.log(
+          "Botão Instruções encontrado:",
+          $("#btnInstructions").length > 0
+        );
+        console.log("Botão Créditos encontrado:", $("#btnCredits").length > 0);
+
+        // Adicionar listeners de fallback caso o engine.js não tenha carregado
+        $("#btnInstructions").on("click", function () {
+          if (!$("#menuInfo").html().includes("Instruções:")) {
+            $("#menuInfo").html(`
+              <b>Instruções:</b><br>
+              1. Use WASD ou Setas para mover o personagem azul<br>
+              2. Clique com o mouse ou pressione ESPAÇO para atirar<br>
+              3. Colete moedas amarelas (+1 ponto)<br>
+              4. Elimine inimigos vermelhos (+2 moedas)<br>
+              5. Encontre a saída verde (X) para vencer<br>
+              6. Evite colidir com inimigos (perde vida)<br>
+              <i>O labirinto é gerado aleatoriamente a cada partida!</i>
+            `);
+          }
+        });
+
+        $("#btnCredits").on("click", function () {
+          if (!$("#menuInfo").html().includes("Criado para")) {
+            $("#menuInfo").html(`
+              <b>Créditos:</b><br>
+              • Desenvolvido para a disciplina Programação Web I<br>
+              • Sistema de labirinto procedural com algoritmo DFS<br>
+              • Mecânica de tiro adicionada<br>
+              • Interface com Bootstrap 5<br>
+              • Controles responsivos (teclado e mouse)<br>
+              • Sistema de log de eventos em tempo real
+            `);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

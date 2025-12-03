@@ -1,0 +1,30 @@
+[file name]: game.xml
+[file content begin]
+<?xml version="1.0" encoding="UTF-8"?>
+<game>
+  <title>Labirinto — Nível Aleatório</title>
+  <description>Encontre o caminho até a saída (X), evite inimigos e atire!</description>
+
+  <generation>
+    <width>20</width>
+    <height>15</height>
+    <difficulty>medium</difficulty>
+    <enemies>3</enemies>
+    <coins>10</coins>
+  </generation>
+
+  <player>
+    <life>5</life>
+    <speed>3</speed>
+    <shootCooldown>0.5</shootCooldown>
+    <bulletSpeed>400</bulletSpeed>
+    <bulletDamage>1</bulletDamage>
+  </player>
+
+  <enemy>
+    <damage>1</damage>
+    <minSpeed>1.2</minSpeed>
+    <maxSpeed>2.0</maxSpeed>
+  </enemy>
+</game>
+[file content end]
